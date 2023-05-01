@@ -1,5 +1,9 @@
+import { serve } from "https://deno.land/std@0.177.0/http/server.ts";
+
 import {getAssignedIssues} from "./jira.ts";
 
-const currentAssignedIssues = await getAssignedIssues(true);
 
-console.log(currentAssignedIssues);
+serve(async (req: Request) => {
+    const currentAssignedIssues = await getAssignedIssues(true);
+    return Response.json(currentAssignedIssues)
+});
