@@ -1,17 +1,12 @@
-// for .env support
-import {load} from "https://deno.land/std@0.185.0/dotenv/mod.ts";
-
-const env = await load();
-
 // https://<resource>/rest/api/3/search?jql=assignee=currentuser()
 
 const projects = ['COBE', 'ADA'];
 const status = ["In Progress"];
 const statusJql = status.map(stat => `"${stat}"`).join(",");
 
-const JIRA_DOMAIN = env["JIRA_DOMAIN"];
-const JIRA_USERNAME = env["JIRA_USERNAME"];
-const JIRA_API_TOKEN = env["JIRA_API_TOKEN"];
+const JIRA_DOMAIN = Deno.env.get("JIRA_DOMAIN");
+const JIRA_USERNAME = Deno.env.get("JIRA_USERNAME");
+const JIRA_API_TOKEN = Deno.env.get("JIRA_API_TOKEN");
 const encodedJiraCredentials = btoa(`${JIRA_USERNAME}:${JIRA_API_TOKEN}`);
 
 type AssignedIssues = {
