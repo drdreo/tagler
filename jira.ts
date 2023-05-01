@@ -9,7 +9,7 @@ const JIRA_USERNAME = Deno.env.get("JIRA_USERNAME");
 const JIRA_API_TOKEN = Deno.env.get("JIRA_API_TOKEN");
 const encodedJiraCredentials = btoa(`${JIRA_USERNAME}:${JIRA_API_TOKEN}`);
 
-type AssignedIssues = {
+export type AssignedIssues = {
     total: number;
     issues: {
         key: string;
